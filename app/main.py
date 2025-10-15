@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from .routes import authroutes
+from mangum import Mangum 
 
 app= FastAPI()
 app.include_router(authroutes.router)
@@ -8,4 +9,4 @@ app.include_router(authroutes.router)
 def root():
      print("Root route accessed!") 
      return {"message": "Welcome to FastAPI E-commerce!"}
-handler = app
+handler = Mangum(app)
